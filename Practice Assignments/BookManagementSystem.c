@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 typedef struct book node;
-int count;
 
 struct book
 {
@@ -33,9 +32,6 @@ void insert()
 
         printf("Enter Book Name: ");
         scanf("%s", head->bookname);
-
-        count = 1;
-        printf("Count set:%d", count);
     }
     else
     {
@@ -67,8 +63,7 @@ void insert()
             while (temp->next != NULL)
                 temp = temp->next;
             temp->next = newNode;
-            count++;
-            printf("Count set:%d", count);
+
         }
     }
 }
