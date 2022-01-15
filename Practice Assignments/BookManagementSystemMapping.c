@@ -13,7 +13,7 @@ struct node
 };
 
 NODE hash[SIZE];
-NODE *temp, *newNode;
+NODE *temp, *newNode, *prev;
 
 void init()
 {
@@ -25,57 +25,30 @@ void init()
     }
 }
 
-void insert()
-{
-    int id;
-    printf("\nEnter Book ID: ");
-    scanf("%d", &id);
-
-    if (hash[id % SIZE].key == -1)
-    {
-        hash[id % SIZE].key = id;
-        printf("Enter Book Name: ");
-        scanf("%s", hash[id % SIZE].name);
-    }
-    else
-    {
-        newNode = (NODE *)malloc(sizeof(NODE));
-        newNode->key = id;
-        printf("Enter Book Name: ");
-        scanf("%s", newNode->name);
-
-        temp = &(hash[id % SIZE]);
-        printf("\nNew Node added.\n");
-
-        while (temp->next != NULL)
-            temp = temp->next;
-        temp->next = newNode;
-        newNode->next = NULL;
-    }
-}
-
-void display(int id)
+int display(int id)
 {
     if (printAll)
     {
-        printf("\nEntered values are:");
+        printf("\nBook records are:\nBOOK_ID:\t\tBOOK_NAME");
         for (int i = 0; i < SIZE; i++)
         {
-            if (hash[i].key != -1)
-                printf("\n%d\t%s", hash[i].key, hash[i].name);
-            temp = hash[i % SIZE].next;
+            temp = &hash[i % SIZE];
             while (temp != NULL)
             {
                 if (hash[i].key != -1)
-                    printf("\n%d\t%s", temp->key, temp->name);
+                    printf("\n%d:\t\t\t%s", temp->key, temp->name);
                 temp = temp->next;
             }
         }
+        printf("\n");
     }
     else
     {
+        printAll = 1;
         if (hash[id % SIZE].key == id)
-            printf("\n%d\t%s", hash[id].key, hash[id].name);
+        {
+            return (printf("\nRecord found:\n%d:\t\t%s\n", hash[id].key, hash[id].name));
+        }
         else
         {
             temp = hash[id % SIZE].next;
@@ -83,34 +56,84 @@ void display(int id)
             {
                 temp = temp->next;
             }
-            printf("\n%d\t%s", temp->key, temp->name);
+            if (temp != NULL)
+                return (printf("\nRecord found:\n%d:\t\t%s\n", temp->key, temp->name));
+            else
+                return 0;
         }
     }
-    printAll = 1;
 }
 
 void delete (int id)
 {
-    if (hash[id % SIZE].key == id)
+    printAll = 0;
+    if (display(id))
     {
-        hash[id % SIZE].key = -1;
-        strcpy(hash[id % SIZE].name, "");
-        printf("Entry Deleted successfully!");
+        printAll = 1;
+        temp = &hash[id % SIZE];
+        if (temp->key == id)
+            hash[id % SIZE] = *(temp->next);
+
+        else
+        {
+            prev = NULL;
+            while (temp != NULL)
+            {
+                if (temp->key == id)
+                    break;
+                prev = temp;
+                temp = temp->next;
+            }
+            prev->next = temp->next;
+        }
+        printf("\nEntry Deleted successfully!\n");
+        free(temp);
     }
     else
     {
-        temp = hash[id % SIZE].next;
-        while (temp != NULL && temp->key != id)
-        {
-            newNode = temp;
-            temp = temp->next;
-        }
-        
-        newNode->next = temp->next;
-        printf("Entry Deleted successfully!");
-        free(temp);
+        printAll = 1;
+        printf("\nRecord not found.\n");
     }
 }
+
+void insert()
+{
+    int id;
+    printAll = 0;
+    printf("\nEnter Book ID: ");
+    scanf("%d", &id);
+    if (!display(id))
+    {
+        printAll = 1;
+        if (hash[id % SIZE].key == -1)
+        {
+            hash[id % SIZE].key = id;
+            printf("Enter Book Name: ");
+            scanf("%s", hash[id % SIZE].name);
+        }
+        else
+        {
+            newNode = (NODE *)malloc(sizeof(NODE));
+            newNode->key = id;
+            printf("Enter Book Name: ");
+            scanf("%s", newNode->name);
+
+            temp = &(hash[id % SIZE]);
+            printf("\nNew Node added.\n");
+
+            while (temp->next != NULL)
+                temp = temp->next;
+            temp->next = newNode;
+            newNode->next = NULL;
+        }
+    }
+    else
+    {
+        printAll = 1;
+        printf("\nID exists already.\n");
+    }
+}
+
 int main()
 {
     init();
@@ -128,9 +151,11 @@ int main()
             printAll = 0;
             printf("Enter Book ID:");
             scanf("%d", &id);
-            display(id);
+            if (!display(id))
+                printf("\nRecord not found.\n");
             break;
         case 3:
+            printf("Status: %d", printAll);
             display(0);
             break;
         case 4:
