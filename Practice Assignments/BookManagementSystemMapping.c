@@ -20,12 +20,12 @@ void init()
     // Init all values to -1 & next pointers to NULL
     for (int i = 0; i < SIZE; i++)
     {
-        hash[i % SIZE].key = -1;
-        hash[i % SIZE].next = NULL;
+        hash[i].key = -1;
+        hash[i].next = NULL;
     }
 }
 
-int insert()
+void insert()
 {
     int id;
     printf("\nEnter Book ID: ");
@@ -61,11 +61,13 @@ void display(int id)
         printf("\nEntered values are:");
         for (int i = 0; i < SIZE; i++)
         {
-            if(hash[i].key!=-1)printf("\n%d\t%s", hash[i].key, hash[i].name);
+            if (hash[i].key != -1)
+                printf("\n%d\t%s", hash[i].key, hash[i].name);
             temp = hash[i % SIZE].next;
             while (temp != NULL)
             {
-                if(hash[i].key!=-1)printf("\n%d\t%s", temp->key, temp->name);
+                if (hash[i].key != -1)
+                    printf("\n%d\t%s", temp->key, temp->name);
                 temp = temp->next;
             }
         }
@@ -103,7 +105,8 @@ void delete (int id)
             newNode = temp;
             temp = temp->next;
         }
-        newNode->next=temp->next;
+        
+        newNode->next = temp->next;
         printf("Entry Deleted successfully!");
         free(temp);
     }
@@ -132,7 +135,7 @@ int main()
             break;
         case 4:
             printf("Enter Book ID:");
-            scanf("%d",&id);
+            scanf("%d", &id);
             delete (id);
             break;
         case 5:
