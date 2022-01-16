@@ -107,7 +107,7 @@ int main()
 
     while (1)
     {
-        printf("Choose an option:\n1.Search\t2.Print All\t3.Quit\n");
+        printf("\nChoose an option:\n1.Search\t2.Print All\t3.Quit\n");
         scanf("%d", &ch);
         switch (ch)
         {
