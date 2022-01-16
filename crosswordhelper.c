@@ -17,7 +17,7 @@ tree *insert(tree *root, char *word)
         printf("%s = %s",word,root->word);
         root->left = NULL;
         root->right = NULL;
-        return root;
+       
     }
     else
     {
@@ -25,8 +25,9 @@ tree *insert(tree *root, char *word)
         printf("%d\n",cmp);
         if (cmp != 0)
             (cmp > 0) ? insert(root->left, word) : insert(root->right, word);
-        return root;
+        
     }
+     return root;
 }
 
 void displaytree(tree *root)
