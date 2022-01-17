@@ -4,6 +4,7 @@
 #include <ctype.h>
 char words[][10] = {"south", "sound", "ajay", "arab", "ratio", "range", "rover", "worthy", "warner", "phantom", "poverty", "quack", "quads",
                     "cab", "cat", "axon", "amen", "white", "whole", "while", "if", "is", "inch", "itch", "fork", "folk"};
+int wordcnt = 0;
 typedef struct treenode
 {
     char word[50];
@@ -49,38 +50,33 @@ tree *findRoot(tree *root, char *word)
 }
 
 void displaytree(tree *root)
-{ 
+{
     if (root)
     {
         displaytree(root->left);
-        printf("%s\t", root->word);
+        printf("%s\n", root->word);
         displaytree(root->right);
     }
 }
 
-void compare_words(char *treeWord, char *word)
+int compare_words(char *treeWord, char *word)
 {
     int i = 0;
     while (treeWord[i] != '\0')
     {
-        if (word[i] == ' ')
+        if (word[i] == '-' || treeWord[i] == word[i])
         {
             i++;
             continue;
         }
         else
-        {
-            if (treeWord[i] == word[i])
-            {
-                i++;
-                continue;
-            }
-            else
-                break;
-        }
+            break;
     }
     if (i == strlen(word))
-        printf("%s \n", treeWord);
+    {
+        printf("%d.%s \n",wordcnt+1, treeWord);
+        return 1;
+    }
 }
 void findWords(tree *root, char *word)
 {
@@ -88,7 +84,8 @@ void findWords(tree *root, char *word)
     {
         findWords(root->left, word);
         if (strlen(root->word) == strlen(word))
-            compare_words(root->word, word);
+            if (compare_words(root->word, word))
+                wordcnt++;
         findWords(root->right, word);
     }
 }
@@ -99,7 +96,7 @@ int main()
     tree *root = NULL, *temp = (tree *)malloc(sizeof(tree));
     for (i = 0; i < sizeof(words) / sizeof(words[0]); i++)
         root = insert(root, words[i]);
-    
+
     printf("Words available are:\n");
     displaytree(root);
 
@@ -112,11 +109,13 @@ int main()
         switch (ch)
         {
         case 1:
-            printf("Enter word to search with unknown characters as spaces (E.g. 'c  ' length(3) with 2 spaces or 'w   e'):\n");
+            printf("\nEnter word to search with unknown characters as dash (E.g. 'c--' length(3) with 2 dash or 'w--e' ):\n");
             fflush(stdin);
             scanf("%[^\n]%*c", word);
+            wordcnt = 0;
             temp = findRoot(root, word);
             findWords(root, word);
+            if(wordcnt==0) printf("Not found!");
             break;
         case 2:
             displaytree(root);
