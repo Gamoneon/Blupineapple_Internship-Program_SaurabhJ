@@ -59,12 +59,12 @@ void displaytree(tree *root)
     }
 }
 
-int compare_words(char *treeWord, char *word)
+void compare_words(char *treeWord, char *word)
 {
     int i = 0;
     while (treeWord[i] != '\0')
     {
-        if (word[i] == '-' || treeWord[i] == word[i])
+        if (word[i] == '-' || treeWord[i] == tolower(word[i]))
         {
             i++;
             continue;
@@ -74,18 +74,18 @@ int compare_words(char *treeWord, char *word)
     }
     if (i == strlen(word))
     {
-        printf("%d.%s \n",wordcnt+1, treeWord);
-        return 1;
+        printf("%d.%s \n", (wordcnt++) + 1, treeWord);
     }
 }
 void findWords(tree *root, char *word)
 {
+
     if (root)
     {
         findWords(root->left, word);
         if (strlen(root->word) == strlen(word))
-            if (compare_words(root->word, word))
-                wordcnt++;
+            (compare_words(root->word, word));
+
         findWords(root->right, word);
     }
 }
@@ -104,18 +104,19 @@ int main()
 
     while (1)
     {
-        printf("\nChoose an option:\n1.Search\t2.Print All\t3.Quit\n");
+        printf("\nChoose an option:\n1.Search\t2.Print All\t3.Quit\n# ");
         scanf("%d", &ch);
         switch (ch)
         {
         case 1:
-            printf("\nEnter word to search with unknown characters as dash (E.g. 'c--' length(3) with 2 dash or 'w--e' ):\n");
+            printf("\nEnter word to search with unknown characters as dash (E.g. 'c--' length(3) with 2 dash or 'w--e' ):\n->");
             fflush(stdin);
             scanf("%[^\n]%*c", word);
             wordcnt = 0;
             temp = findRoot(root, word);
             findWords(root, word);
-            if(wordcnt==0) printf("Not found!");
+            if (wordcnt == 0)
+                printf("Word not found!\n");
             break;
         case 2:
             displaytree(root);
