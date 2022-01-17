@@ -59,7 +59,7 @@ void displaytree(tree *root)
     }
 }
 
-int compare_words(char *treeWord, char *word)
+void compare_words(char *treeWord, char *word)
 {
     int i = 0;
     while (treeWord[i] != '\0')
@@ -74,18 +74,18 @@ int compare_words(char *treeWord, char *word)
     }
     if (i == strlen(word))
     {
-        printf("%d.%s \n",wordcnt+1, treeWord);
-        return 1;
+        printf("%d.%s \n", (wordcnt++) + 1, treeWord);
     }
 }
 void findWords(tree *root, char *word)
 {
+
     if (root)
     {
         findWords(root->left, word);
         if (strlen(root->word) == strlen(word))
-            if (compare_words(root->word, word))
-                wordcnt++;
+            (compare_words(root->word, word));
+
         findWords(root->right, word);
     }
 }
@@ -115,7 +115,8 @@ int main()
             wordcnt = 0;
             temp = findRoot(root, word);
             findWords(root, word);
-            if(wordcnt==0) printf("Not found!");
+            if (wordcnt == 0)
+                printf("Not found!");
             break;
         case 2:
             displaytree(root);
