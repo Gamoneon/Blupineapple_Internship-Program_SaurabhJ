@@ -116,7 +116,11 @@ int main()
             temp = findRoot(root, word);
             findWords(root, word);
             if (wordcnt == 0)
+<<<<<<< HEAD
                 printf("Word not found!\n");
+=======
+                printf("Not found!");
+>>>>>>> ca18187c26a8ebb8bde2adc56cb7c4da3042f6e1
             break;
         case 2:
             displaytree(root);
