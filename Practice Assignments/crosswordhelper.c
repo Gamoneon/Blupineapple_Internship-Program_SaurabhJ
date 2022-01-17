@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 char words[][10] = {"south", "sound", "ajay", "arab", "ratio", "range", "rover", "worthy", "warner", "phantom", "poverty", "quack", "quads",
-                    "cab", "cat", "axon", "amen", "white", "whole", "while", "if", "is", "inch", "itch", "fork", "folk"};
-int wordcnt = 0;
+                    "cab", "cat", "axon", "amen", "album", "alarm", "white", "whole", "while", "if", "is", "inch", "itch", "fork", "folk"};
+int wordcnt = 0, flag = 0;
 typedef struct treenode
 {
     char word[50];
@@ -19,6 +19,8 @@ tree *insert(tree *root, char *word)
         strcpy(root->word, word);
         root->left = NULL;
         root->right = NULL;
+        if (flag)
+            printf("Word added successfully!\n");
     }
     else
     {
@@ -31,6 +33,8 @@ tree *insert(tree *root, char *word)
             else
                 root->right = insert(root->right, word);
         }
+        else
+            printf("Word present already!\n");
     }
     return root;
 }
@@ -54,7 +58,7 @@ void displaytree(tree *root)
     if (root)
     {
         displaytree(root->left);
-        printf("%s\n", root->word);
+        printf("%s\t", root->word);
         displaytree(root->right);
     }
 }
@@ -96,7 +100,7 @@ int main()
     tree *root = NULL, *temp = (tree *)malloc(sizeof(tree));
     for (i = 0; i < sizeof(words) / sizeof(words[0]); i++)
         root = insert(root, words[i]);
-
+    flag = 1;
     printf("Words available are:\n");
     displaytree(root);
 
@@ -104,7 +108,7 @@ int main()
 
     while (1)
     {
-        printf("\nChoose an option:\n1.Search\t2.Print All\t3.Quit\n# ");
+        printf("\nChoose an option:\n1.Search\t2.Insert\t3.Print All\t4.Quit\n# ");
         scanf("%d", &ch);
         switch (ch)
         {
@@ -119,9 +123,15 @@ int main()
                 printf("Word not found!\n");
             break;
         case 2:
-            displaytree(root);
+            printf("Enter new word to add in Dictionary:\n->");
+            fflush(stdin);
+            scanf("%[^\n]%*c", word);
+            root = insert(root, word);
             break;
         case 3:
+            displaytree(root);
+            break;
+        case 4:
             exit(0);
             break;
         default:
