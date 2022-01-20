@@ -83,7 +83,6 @@ void compare_words(char *treeWord, char *word)
 }
 void findWords(tree *root, char *word)
 {
-
     if (root)
     {
         findWords(root->left, word);
@@ -117,12 +116,12 @@ int main()
         switch (ch)
         {
         case 1:
-            printf("\nEnter word to search with unknown characters as dash (E.g. 'c--' length(3) with 2 dash or 'w--e' ):\n->");
+            printf("\nEnter word to search with unknown characters as dash (E.g. 'c--' length(3) with 2 dash or '-l--m' ):\n-> ");
             fflush(stdin);
             scanf("%[^\n]%*c", word);
             wordcnt = 0;
-            temp = findRoot(root, word);
-            findWords(root, word);
+            temp =(word[0]!='-')?findRoot(root, word):root;
+            findWords(temp, word);
             if (wordcnt == 0)
                 printf("Word not found!\n");
             break;
