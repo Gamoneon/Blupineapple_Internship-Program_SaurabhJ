@@ -1,0 +1,120 @@
+.header on
+.width 20 20 0 0
+.mode column
+PRAGMA FOREIGN_KEYs= ON;
+
+CREATE TABLE CUSTOMER(
+  PersonID INT PRIMARY KEY,
+  Name char(20) NOT NULL,
+  Contact INT UNIQUE,
+  City char(50)
+);
+
+.print CUSTOMER TABLE created successfully.
+.print
+
+INSERT INTO CUSTOMER VALUES
+  (101,"Saurabh Jadhav",8796454080,"Pune"),
+  (102,"Omkar Doke ",8696474080,"Pune"),
+  (103,"Shayan Atar",9354645100,"Aurangabad"),
+  (104,"Soumya Singh",7799024011,"Pune"),
+  (105,"Rahul Barate",9635214782,"Nashik"),
+  (106,"Shania D'silva",9865741313,"Nashik")
+;
+
+.print "6 record(s) inserted successfully into CUSTOMER TABLE."
+.print
+
+SELECT * FROM CUSTOMER;
+
+CREATE TABLE ORDERS(
+OrderID INT PRIMARY KEY,
+BILL_AMOUNT$ INT NOT NULL,
+ORDER_DATE DATE,
+PersonID INT,
+FOREIGN KEY (PersonID) REFERENCES CUSTOMER (PersonID)
+);
+
+.print
+.print "ORDERS TABLE created successfully."
+.print
+
+INSERT INTO ORDERS VALUES
+(1256,7800,"20-01-2021",101),
+(1260,9,"01-01-2021",101),
+(1265,40,"19-01-2022",102),
+(1278,904,"01-01-2021",102),
+(1323,82,"20-08-2021",101),
+(1307,478,"25-05-2021",103),
+(1333,9000,"13-05-2021",103),
+(1452,9000,"27-12-2021",104),
+(1560,675,"01-01-2022",105),
+(1580,50,"05-11-2021",106)
+;
+
+SELECT * FROM ORDERS;
+
+.print
+.print "SELECT * FROM CUSTOMER where NOT (City="Pune");
+.print
+
+SELECT * FROM CUSTOMER where NOT (City="Pune");
+.print
+
+.print "SELECT Name FROM CUSTOMER where NOT (City="Aurangabad" OR City="Nashik");
+.print
+
+SELECT Name FROM CUSTOMER where NOT (City="Aurangabad" OR City="Nashik");
+.print
+
+.print SELECT DISTINCT Name FROM CUSTOMER as CD,ORDERS as OD where OD.ORDER_DATE="01-01-2021" AND CS.PersonID=OD.PersonID";
+.print
+
+SELECT DISTINCT Name FROM CUSTOMER as CS,ORDERS as OD WHERE OD.ORDER_DATE="01-01-2021" AND CS.PersonID=OD.PersonID;
+.print
+
+.print SELECT SUM(BILL_AMOUNT) FROM ORDERS AS OD, CUSTOMER AS CS WHERE OD.ORDER_DATE="01-01-2021" AND CS.PersonID=OD.PersonID;
+.print
+
+SELECT SUM(BILL_AMOUNT$) FROM ORDERS AS OD, CUSTOMER AS CS WHERE OD.ORDER_DATE="01-01-2021" AND CS.PersonID=OD.PersonID;
+.print
+
+.print UPDATE ORDERS
+.print SET BILL_AMOUNT$=BILL_AMOUNT$+90
+.print WHERE PersonID=106;
+.print
+
+UPDATE ORDERS
+SET BILL_AMOUNT$=BILL_AMOUNT$+90
+WHERE PersonID=106;
+
+
+SELECT count(PersonID) FROM ORDERS;
+.print
+
+.print SELECT COUNT(PersonID), City
+.print FROM CUSTOMER
+.print GROUP BY City
+.print HAVING COUNT(PersonID) = 3
+.print ORDER BY COUNT(PersonID) DESC;
+.print
+
+SELECT COUNT(PersonID), City
+FROM CUSTOMER
+GROUP BY City
+HAVING COUNT(PersonID) = 3
+ORDER BY COUNT(PersonID) DESC;
+
+.print
+.print SELECT CUSTOMER.Name, SUM(ORDERS.BILL_AMOUNT$) as Total_Bill
+.print FROM CUSTOMER
+.print INNER JOIN ORDERS
+.print ON CUSTOMER.PersonID=ORDERS.PersonID
+.print GROUP BY Name
+.print
+
+SELECT CUSTOMER.Name, SUM(ORDERS.BILL_AMOUNT$) as Total_Bill
+FROM CUSTOMER
+INNER JOIN ORDERS
+ON CUSTOMER.PersonID=ORDERS.PersonID
+GROUP BY Name;
