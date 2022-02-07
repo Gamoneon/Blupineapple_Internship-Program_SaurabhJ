@@ -1,0 +1,131 @@
+.article {
+    margin-top: 110px;
+    height: 800px;
+    width: 100%;
+    display: flex;
+}
+
+.left {
+    margin-left: 20px;
+    float: left;
+    width: 20vw;
+}
+
+.middle {
+    margin-left: 10vw;
+    width: 60vw;
+}
+
+.right {
+    margin-right: 5vw;
+    margin-left: 1vw;
+    float: right;
+    width: 20vw;
+}
+.alert {
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  margin: 0;
+}
+.premiercard
+{
+    margin-top: 20px;
+    display: flex;
+    height:230px;
+    width: 100%;
+}
+input[type="submit"] {
+  cursor: pointer;
+}
+
+input {
+  border-radius: 6px;
+  padding: 5px 10px;
+  outline: none;
+  margin-right: 5px;
+  background-color: white;
+}
+
+.loginDetails {
+  text-align: center;
+  padding-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  margin-right: 40px;
+}
+
+body {
+    
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.tsynergize {
+  font-size: large;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  width: 350px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.theader {
+  font-size: larger;
+  background-color: #f0f0f0;
+  width: 100%;
+  border-radius: 5px;
+  border-collapse: collapse;
+}
+
+.tsynergize tr,
+td {
+  border-collapse: collapse;
+  padding: 5px;
+  width: 300px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    background-color: lightgray;
+    padding: 10px;
+    margin-top: 1px;
+   
+  }
+  
+  .grid-container > div {
+    
+    text-align: left;
+    padding: 20px 0;
+    font-size: 15px;
+  }
+  
+  .item1,.item2,.item3 {
+    grid-row-end: span 3;
+  }
