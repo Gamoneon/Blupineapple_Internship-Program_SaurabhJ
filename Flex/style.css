@@ -1,0 +1,112 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw;
+    line-height: 1.5;
+    color: #333;
+    background: #a1c3ff;
+}
+
+img{
+    padding: 50px;
+    width: 30vw;
+    height: 30vw;
+}
+
+h1,h2{
+    margin-bottom: 15px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.container{
+    max-width: 80vw;
+    margin: 0 auto;
+    padding:0 30px;
+}
+
+.navbar{
+    background: #3474e6;
+    color: white;
+    height: 10vw;
+}
+
+.navbar .logo{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.navbar a{
+    color: white;
+    text-decoration: none;
+    font-size: large;
+    font-weight: bold;
+}
+
+.navbar .container{
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 100%;
+}
+
+.navbar ul
+{
+    display: flex;
+    
+}
+
+.navbar ul li{
+    margin-left: 1.5vw;
+}
+
+.navbar a:hover{
+color: lightblue;
+}
+
+.header{
+    background-color: #015acc;
+    color: white;
+    min-height: 400px;
+}
+
+.header h1{
+    font-size:3rem;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.header img{
+    max-width: 45vw;
+}
+
+.header .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boxes .container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.box{
+    flex: 1;
+    background: #0a51cc;
+    color: white;
+    border-radius: 10px;
+    margin: 20px 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
+    padding: 15px 20px;
+}
+
