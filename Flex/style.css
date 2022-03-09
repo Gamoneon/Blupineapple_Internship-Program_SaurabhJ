@@ -100,9 +100,9 @@ color: lightblue;
     justify-content: space-between;
 }
 
-.box{
+.box1, .box2, .box3{
     flex: 1;
-    background: #0a51cc;
+    background: #0ab5cc;
     color: white;
     border-radius: 10px;
     margin: 20px 10px;
@@ -110,3 +110,14 @@ color: lightblue;
     padding: 15px 20px;
 }
 
+.box1{
+order: 3;
+}
+
+.box2{
+order: 1;
+}
+
+.box3{
+order: 2;
+}
