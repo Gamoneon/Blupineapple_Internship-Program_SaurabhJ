@@ -1,0 +1,32 @@
+[
+    {
+        "id":1,
+        "Name":"Nashik",
+        "Nick-name":"Wine City",
+        "src":"https://images.thrillophilia.com/image/upload/s--ANEHdP8E--/c_fill,g_center,h_642,q_auto,w_1280/f_auto,fl_strip_profile/v1/images/photos/000/365/817/original/1612351393_shutterstock_1719304516.jpg.jpg"
+    },
+    {
+        "id":2,
+        "Name":"Pune",
+        "Nick-name":"Oxford of the East",
+        "src":"http://indiamarks.com/wp-content/uploads/Pune-The-Oxford-of-the-East.jpg"
+    },
+    {
+        "id":3,
+        "Name":"Jaipur",
+        "Nick-name":"Pink City",
+        "src":"http://www.travelstart.co.za/blog/wp-content/uploads/2019/08/Jaipur-47.jpg"
+    },
+    {
+        "id":4,
+        "Name":"Mumbai",
+        "Nick-name":"City of Dreams",
+        "src":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Mumbai_Skyline_at_Night.jpg/1024px-Mumbai_Skyline_at_Night.jpg?20111002162340"
+    },
+    {
+        "id":5,
+        "Name":"Chennai",
+        "Nick-name":"City of Temples",
+        "src":"https://img.traveltriangle.com/blog/wp-content/uploads/2018/01/FotoJetksdbdu87126b.jpg"
+    }
+]

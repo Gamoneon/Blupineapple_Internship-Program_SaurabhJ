@@ -1,0 +1,9 @@
+ol{
+    justify-content: center;
+    font-size: medium;
+    color: deeppink;
+}
+li:hover {
+    transition: ease font-size 300ms;
+    font-size: large;
+}
